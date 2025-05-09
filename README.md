@@ -146,3 +146,16 @@ Key environment variables to configure:
 -   `DB_*`: Database configuration
 -   `JWT_SECRET`: JWT authentication secret
 -   `PAYMENT_GATEWAY_*`: Payment gateway specific settings
+
+## Payment Gateway Extensibility
+
+The system is designed using the Strategy Design Pattern to allow adding new payment gateways with minimal code changes. Each payment gateway implements a common interface, allowing the application to dynamically resolve and execute the correct payment logic.
+
+Structure
+App\Services\Payments\PaymentGatewayInterface
+This interface defines a standard pay(Order $order) method that all payment gateways must implement.
+
+App\Services\Payments\CreditCardGateway
+
+App\Services\Payments\PaypalGateway
+These classes implement the PaymentGatewayInterface and contain their specific payment logic.
